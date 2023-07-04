@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arvore B e B+</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <h1>Simulação de funcionamento de Árvores B e B+ interativas</h1>
+    <div>
+        <form action="{{ url_for('index') }}" method="POST">
+            <p>Escolha o grau da árvore:</p>
+
+            <input type="radio" id="three" name="grau" value="3">
+            <label for="three">3</label><br>
+            <input type="radio" id="four" name="grau" value="4">
+            <label for="four">4</label><br>
+            <input type="radio" id="five" name="grau" value="5">
+            <label for="five">5</label><br>
+            <input type="radio" id="six" name="grau" value="6">
+            <label for="six">6</label><br>
+            <input type="radio" id="seven" name="grau" value="7">
+            <label for="seven">7</label><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+
+
+    <p>Valores de entrada: {{ aleatorio }}</p>
+    <div id="simulacao_arvore">
+        <div class="item">
+            <p>{{raiz}}</p>
+        </div>
+
+        {% if filhos %}
+            {% for filho in filhos %}
+                {% if is_list(filho) %}
+                    <ul>
+                        {% for item in filho %}
+                            <div class="item">
+                                <li>{{ item }}</li>
+                            </div>
+
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="item">
+                        <p>{{ filho }}</p>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+</body>
+</html>
